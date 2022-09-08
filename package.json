@@ -1,0 +1,69 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.4.5",
+    "antd": "^4.23.0",
+    "axios": "^0.27.2",
+    "craco-antd": "2.0.0",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^4.0.3",
+    "react-transition-group": "^4.4.5",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "set PORT=5000 && craco start",
+    "build": "set GENERATE_SOURCEMAP=false && craco build",
+    "analyzer": "env NODE_ENV=production BUILD_ANALYZER=true yarn start",
+    "eslint": "craco eslint",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.18.10",
+    "@babel/preset-env": "^7.19.0",
+    "@babel/preset-typescript": "^7.18.6",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.184",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "babel-plugin-import": "^1.13.5",
+    "core-js": "^3",
+    "craco-less": "^2.0.0",
+    "husky": "^8.0.1",
+    "mockjs": "^1.1.0",
+    "postcss-px-to-viewport": "^1.1.1",
+    "typescript": "~4.4.4",
+    "webpack-bundle-analyzer": "^4.6.1"
+  }
+}

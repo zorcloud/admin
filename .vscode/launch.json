@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "craco start",
+            "program": "craco start"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "craco build",
+            "program": "craco build"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "craco test",
+            "program": "craco test"
+        }
+    ]
+}
