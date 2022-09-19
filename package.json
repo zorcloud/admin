@@ -18,7 +18,6 @@
     "start": "set PORT=5000 && craco start",
     "build": "set GENERATE_SOURCEMAP=false && craco build",
     "analyzer": "env NODE_ENV=production BUILD_ANALYZER=true yarn start",
-    "eslint": "craco eslint",
     "test": "craco test",
     "eject": "craco eject"
   },
@@ -31,7 +30,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": {
     "production": [

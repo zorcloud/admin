@@ -1,1 +1,1 @@
-cra + craco + ts + antd + less
+admin
