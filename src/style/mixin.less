@@ -1,39 +1,8 @@
-.set-color(@value) {
-  color: @value;
-}
-
 .make-theme(@i: length(@theme-colors), @fix: @fix) when (@i > 0) {
   .make-theme(@i - 1);
   @type: extract(@theme-colors, @i);
   .@{fix}-@{type} {
     color: @@type;
-  }
-}
-
-.theme-general(@fix) {
-  .@{fix}-primary {
-    .set-color(@primary);
-  }
-  .@{fix}-secondary {
-    .set-color(@secondary);
-  }
-  .@{fix}-success {
-    .set-color(@success);
-  }
-  .@{fix}-info {
-    .set-color(@info);
-  }
-  .@{fix}-warning {
-    .set-color(@warning);
-  }
-  .@{fix}-danger {
-    .set-color(@danger);
-  }
-  .@{fix}-light {
-    .set-color(@light);
-  }
-  .@{fix}-dark {
-    .set-color(@dark);
   }
 }
 
