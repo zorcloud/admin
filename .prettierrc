@@ -1,9 +1,10 @@
 {
   "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
+  "trailingComma": "none", // 对象结尾处逗号
+  "printWidth": 800,
   "proseWrap": "never",
   "arrowParens": "avoid",
+  "htmlWhitespaceSensitivity": "ignore", // 忽略'>'下落问题
   "overrides": [
     {
       "files": ".prettierrc",

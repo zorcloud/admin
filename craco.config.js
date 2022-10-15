@@ -1,44 +1,45 @@
-const path = require("path")
-const webpack = require("webpack")
+const path = require('path');
+const webpack = require('webpack');
 // ( 内部自动安装 less less-loader 相关依赖 )
 // 单独配置babel无效，需要和craco-less 一起样式才有效果
 // const CracoLess = require("craco-less");
-const CracoAntDesignPlugin = require("craco-antd");
+const CracoAntDesignPlugin = require('craco-antd');
 
 const addPath = dir => path.join(__dirname, dir);
 
-
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const isPro = (dev) => dev === "production";
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const isPro = dev => dev === 'production';
 
 module.exports = {
   webpack: {
     alias: {
-      '@': addPath('src'),
-      '@assets': addPath('src/assets'),
-      '@common': addPath('src/common'),
-      '@components': addPath('src/components'),
-      '@hooks': addPath('src/hooks'),
-      '@pages': addPath('src/pages'),
-      '@store': addPath('src/store'),
-      '@utils': addPath('src/utils')
+      '@': addPath('src')
+      // '@assets': addPath('src/assets'),
+      // '@common': addPath('src/common'),
+      // '@components': addPath('src/components'),
+      // '@hooks': addPath('src/hooks'),
+      // '@pages': addPath('src/pages'),
+      // '@store': addPath('src/store'),
+      // '@utils': addPath('src/utils')
     },
     // 配置cdn外部资源不打包
     // externals: {
     //   echarts: "echarts",
     // },
-    configure: (webpackConfig, {
-      env,
-      paths
-    }) => {
+    configure: (webpackConfig, { env, paths }) => {
       // 打包分析 弹出打包分析页面
       if (isPro(env)) {
         webpackConfig.plugins.push(new BundleAnalyzerPlugin());
       }
       // 指定moment打包的语言
-      webpackConfig.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/));
+      webpackConfig.plugins.push(
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/)
+      );
 
-      webpackConfig.devtool = isPro(env) ? 'source-map' : 'cheap-module-source-map';
+      webpackConfig.devtool = isPro(env)
+        ? 'source-map'
+        : 'cheap-module-source-map';
       webpackConfig.optimization.splitChunks = {
         chunks: 'all', // async all
         // minSize: 40000,
@@ -82,8 +83,8 @@ module.exports = {
             priority: -20
           }
         }
-      }
-      return webpackConfig
+      };
+      return webpackConfig;
     }
   },
   babel: {
@@ -128,16 +129,22 @@ module.exports = {
       //   libraryDirectory: 'es',
       //   style: "css"
       // }, 'antd'],
-      ['import', {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true
-      }, 'antd'],
+      [
+        'import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: true // true(less 可以自定义主题) or 'css'
+        },
+        'antd'
+      ],
       // 配置类的装饰器
-      ['@babel/plugin-proposal-decorators', {
-        legacy: true
-      }]
-
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          legacy: true
+        }
+      ]
     ]
   },
   style: {},
@@ -166,26 +173,26 @@ module.exports = {
       plugin: CracoAntDesignPlugin,
       options: {
         customizeTheme: {
-          '@primary-color': '#e55870',
+          '@primary-color': '#9999ff'
         },
         customizeThemeLessPath: addPath('./src/style/variable.less')
-      },
+      }
     }
   ],
   devServer: {
-    // host: 'localhost',
-    // port: 5000,
-    open: false, // 默认自动开浏览器
-    historyApiFallback: true, //解决前端路由刷新404
-    proxy: {
-      "/api": {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        pathRewrite: {
-          "^/api": '/api'
-        }
-      }
-    }
+    host: 'localhost',
+    port: 5000,
+    open: false // 默认自动开浏览器
+    // historyApiFallback: true, //解决前端路由刷新404
+    // proxy: {
+    //   "/api": {
+    //     target: 'http://localhost:5000',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       "^/api": '/api'
+    //     }
+    //   }
+    // }
   },
-  performance: false, // 关闭性能分析，再快
-}
+  performance: false // 关闭性能分析，再快
+};
